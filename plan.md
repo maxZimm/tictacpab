@@ -5,6 +5,7 @@ Game includes:
 * a board to place moves on
 ** A board has a set number of places to hold a player move
 ** A players move is represented by either an X or an O on the board, all moves by a player are the same symbol
+** A board should accept moves as input? And display them correctly
 * at least one player
 ** if only one player created; The game will generate an opponent
 ** A player can create a move
