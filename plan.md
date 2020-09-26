@@ -18,6 +18,11 @@ Game includes:
 ** Those moves being sent to board
 ** Moves are valid
 ** Determines winner
+* Moves
+** Hold state of available moves on the board
+** Accept a players move
+** Validate whether a players move is acceptable
+** Send players move to board?
 
 Empty Board
 _|_|_
@@ -39,4 +44,12 @@ X|O|O
 _|X|_
  | |X
 
+_/__
+I think a dictionary type for available board spaces is a way to pass
+state of game between players game logic and the board
+
+board = {'top':{'L': None, 'M': None, 'R': None}, 
+         'mid':{'etc..' 
+
+Or should I make a board moves class that can be passed between board player and game logic?
 

@@ -16,3 +16,6 @@ class Player():
             return self.nameValidation(name)
         else:
             return name
+
+    def getMove(self):
+        pass
