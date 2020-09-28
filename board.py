@@ -7,7 +7,7 @@ class Board():
         self.p2 = 'O'
 
     def printBoard(self, moves):
-        # Data structure for moves? Dict seems like a good thing
+        # moves is it's own class
         self.topRow()
         self.middleRow()
         self.bottomRow()

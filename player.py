@@ -18,4 +18,6 @@ class Player():
             return name
 
     def getMove(self):
-        pass
+        ui = input('enter your move: ').strip() 
+        # validate move?
+        return ui
