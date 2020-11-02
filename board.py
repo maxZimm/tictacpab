@@ -8,6 +8,7 @@ class Board():
 
     def printBoard(self, moves):
         # moves is it's own class
+        moves = moves
         self.topRow()
         self.middleRow()
         self.bottomRow()
