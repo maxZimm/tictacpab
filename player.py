@@ -18,6 +18,9 @@ class Player():
             return name
 
     def getMove(self):
-        ui = input('enter your move: ').strip() 
+        '''Ask 2 questions which row which column, validate that the
+           response is in acceptable format'''
+        row = input('Row [top/mid/bot]: ').strip() 
+        column = input('Col [l/m/r]: ').strip() 
         # validate move?
-        return ui
+        return row, column

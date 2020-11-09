@@ -2,6 +2,7 @@ import unittest
 import sys
 sys.path.append('..')
 from board import Board
+from moves import Moves, InputError
 from io import StringIO
 
 class TestBoardMethods(unittest.TestCase):
@@ -52,8 +53,12 @@ class TestBoardMethods(unittest.TestCase):
         captured_output = StringIO()
         sys.stdout = captured_output
         board = Board()
-        board.printBoard({})
+        move = Moves()
+        board.printBoard(move)
         self.assertEqual('_|_|_\n_|_|_\n | | \n', captured_output.getvalue())
+        move.acceptMove({'top': 'l', 'player': 1})
+        board.printBoard(move)
+        self.assertIn('X|_|_\n_|_|_\n | | \n', captured_output.getvalue())
         sys.stdout = sys.__stdout__
         
 if __name__  == '__main__':

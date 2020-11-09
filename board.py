@@ -1,5 +1,4 @@
 
-
 class Board():
 
     def __init__(self):
@@ -7,11 +6,9 @@ class Board():
         self.p2 = 'O'
 
     def printBoard(self, moves):
-        # moves is it's own class
-        moves = moves
-        self.topRow()
-        self.middleRow()
-        self.bottomRow()
+        self.topRow(moves.topRow['l'],moves.topRow['m'],moves.topRow['r'])
+        self.middleRow(moves.midRow['l'],moves.midRow['m'],moves.midRow['r'])
+        self.bottomRow(moves.botRow['l'],moves.botRow['m'],moves.botRow['r'])
 
     def topRow(self,l=0, m=0, r=0):
         print( f'{self.playerMove(l)}|{self.playerMove(m)}|{self.playerMove(r)}')
