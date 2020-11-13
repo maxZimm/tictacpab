@@ -8,7 +8,9 @@
 # How does p1 tell you there move? Good question, by typing in a format I'll recognize
 # Whats the format? Still figuring it out, so it will need to be along the lines of ROW L|M|R (left middle right)
 # perhaps TOP|MID|BOT asked first, then L|M|R asked second then the vars saved and combined internally
-
+from player import Player
+from moves import Moves
+from board import Board
 
 class GameLogic():
     """Class to control:
@@ -18,10 +20,19 @@ class GameLogic():
         * Keep score and determine winners """
 
     def __init__(self):
-        pass
+        # maybe this should just hold a call to getPlayers or another method to kick off game loop
+        self.board = Board()
+        self.moves = Moves()
+        self.getPlayers()
 
     def startGame(self):
         pass
 
     def getPlayers(self):
-        pass
+        print('Player 1')
+        self.player_1 = Player(1) 
+        print('Player 2')
+        self.player_2 = Player(2) 
+
+
+        

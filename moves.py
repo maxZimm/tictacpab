@@ -54,11 +54,6 @@ class Moves():
             else:
                 raise InputError('move is already taken')
 
-    def validateMove(self, move):
-        """Does this method determine whether it is a winning move or not?
-           Or does it check whether someone else has made this move or not?"""
-        pass
-
 class InputError(Exception):
     """Class to raise error when unacceptable moves are submitted"""
     def __init__(self, message):
