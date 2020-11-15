@@ -13,21 +13,21 @@ class Moves():
        error message to Game Logic instance"""
 
     def __init__(self):
-        self.topRow = {'l':0,'m':0,'r':0}
-        self.midRow = {'l':0,'m':0,'r':0}
-        self.botRow = {'l':0,'m':0,'r':0}
+        self.state = {'top':{'l':0,'m':0,'r':0},
+                      'mid':{'l':0,'m':0,'r':0},
+                      'bot':{'l':0,'m':0,'r':0}}
 
     def showAvailMoves(self):
         response = {'topRow':[], 
                     'midRow': [],
                     'botRow': []}
-        for k,v in self.topRow.items():
+        for k,v in self.state['top'].items():
             if v == 0:
                 response['topRow'].append(k)
-        for k,v in self.midRow.items():
+        for k,v in self.state['mid'].items():
             if v == 0:
                 response['midRow'].append(k)
-        for k,v in self.botRow.items():
+        for k,v in self.state['bot'].items():
             if v == 0:
                 response['botRow'].append(k)
         return response
@@ -36,19 +36,19 @@ class Moves():
         '''accepts a move which is dict with key for row and player.
            move value is 1 of l,m,r and player is value of 1 or 2'''
         if 'top' in move.keys():
-            if self.topRow[move['top']] == 0:
-                self.topRow[move['top']] = move['player'] 
+            if self.state['top'][move['top']] == 0:
+                self.state['top'][move['top']] = move['player'] 
             else:
                 raise InputError('move is already taken')
 
         if 'mid' in move.keys():
-            if self.midRow[move['mid']] == 0:
-                self.midRow[move['mid']] = move['player'] 
+            if self.state['mid'][move['mid']] == 0:
+                self.state['mid'][move['mid']] = move['player'] 
             else:
                 raise InputError('move is already taken')
         if 'bot' in move.keys():
-            if self.botRow[move['bot']] == 0:
-                self.botRow[move['bot']] = move['player'] 
+            if self.state['bot'][move['bot']] == 0:
+                self.state['bot'][move['bot']] = move['player'] 
             else:
                 raise InputError('move is already taken')
 

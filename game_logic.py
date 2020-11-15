@@ -39,26 +39,38 @@ class GameLogic():
         self.player_2 = Player(2) 
 
     def check_winner(self):
-        # this is ugly should find a better way
-        # check across a row
-        if self.moves.topRow['l'] == self.moves.topRow['m'] and  self.moves.topRow['l'] == self.moves.topRow['r']:
-            return self.moves.topRow['l'] 
-        if self.moves.midRow['l'] == self.moves.midRow['m'] and  self.moves.midRow['l'] == self.moves.midRow['r']:
-            return self.moves.midRow['l'] 
-        if self.moves.botRow['l'] == self.moves.botRow['m'] and  self.moves.botRow['l'] == self.moves.botRow['r']:
-            return self.moves.botRow['l'] 
-        # check across column
-        if self.moves.topRow['l'] == self.moves.botRow['l'] and  self.moves.midRow['l'] == self.moves.botRow['l']:
-            return self.moves.botRow['l'] 
-        if self.moves.topRow['m'] == self.moves.botRow['m'] and  self.moves.midRow['m'] == self.moves.botRow['m']:
-            return self.moves.botRow['m'] 
-        if self.moves.topRow['r'] == self.moves.botRow['r'] and  self.moves.midRow['r'] == self.moves.botRow['r']:
-            return self.moves.botRow['r'] 
-        # then 2 diagonals 
-        if self.moves.topRow['l'] == self.moves.botRow['r'] and  self.moves.midRow['m'] == self.moves.botRow['r']:
-            return self.moves.botRow['r'] 
-        if self.moves.topRow['r'] == self.moves.botRow['l'] and  self.moves.midRow['m'] == self.moves.botRow['l']:
-            return self.moves.botRow['l'] 
+        rows = [self.check_row_win(row) for row in self.moves.state.keys()]
+        cols = [self.check_col_win(col) for col in ['l','m','r']] 
+        diag = self.check_diag_win()
+        if diag is not None:
+            return diag
+        for item in rows:
+            if item is not None:
+                return item
+        for item in cols:
+            if item is not None:
+                return item
 
+    def check_row_win(self, row):
+        cntr = list(self.moves.state[row].values())
+        if cntr.count(1) == 3: 
+            return 1
+        elif cntr.count(2) == 3: 
+            return 2
+
+    def check_col_win(self, col):
+        cntr = [self.moves.state[x][col] for x in self.moves.state.keys()]
+        if cntr.count(1) == 3: 
+            return 1
+        elif cntr.count(2) == 3: 
+            return 2
+
+    def check_diag_win(self):
+        cntr1 = [self.moves.state['top']['l'],self.moves.state['mid']['m'] ,self.moves.state['bot']['r'] ]
+        cntr2 = [self.moves.state['top']['r'],self.moves.state['mid']['m'] ,self.moves.state['bot']['l'] ]
+        if cntr1.count(1) == 3 or cntr2.count(1) == 3: 
+            return 1
+        elif cntr1.count(2) == 3 or cntr2.count(2) == 3: 
+            return 2
 
 
