@@ -19,7 +19,14 @@ class TestGameLogicMethods(unittest.TestCase):
         self.assertEqual(game.player_2.name, 'Holt')
         sys.stdout = sys.__stdout__
 
-if __name__ == '__main__':
-    unittest.main()
+    @patch('builtins.input', side_effect=['ScaryTerry','Holt'])
+    def test_checkwinner(self):
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        game = GameLogic()
+
+        sys.stdout = sys.__stdout__
          
 
+if __name__ == '__main__':
+    unittest.main()

@@ -33,10 +33,8 @@ class Moves():
         return response
 
     def acceptMove(self, move):
-        # move is a dict has key that correspondes to keyRow attr
-        # we can have conditions if move.keys includes top or mid or bottom
-        # then we can ask if value for key is l or m or r
-        # then we can check if self.thatRow has a value for that space 
+        '''accepts a move which is dict with key for row and player.
+           move value is 1 of l,m,r and player is value of 1 or 2'''
         if 'top' in move.keys():
             if self.topRow[move['top']] == 0:
                 self.topRow[move['top']] = move['player'] 

@@ -20,12 +20,16 @@ class GameLogic():
         * Keep score and determine winners """
 
     def __init__(self):
-        # maybe this should just hold a call to getPlayers or another method to kick off game loop
         self.board = Board()
         self.moves = Moves()
         self.getPlayers()
 
     def startGame(self):
+        # getPlayers
+        # ask player_1 to make a move
+        # accept player_1's move and validate that it is acceptable?
+        # check if that move resulted in a win? This can't happen at the very least till 3 moves are made by a player
+        # ask player_2 to make a move
         pass
 
     def getPlayers(self):
@@ -34,5 +38,27 @@ class GameLogic():
         print('Player 2')
         self.player_2 = Player(2) 
 
+    def check_winner(self):
+        # this is ugly should find a better way
+        # check across a row
+        if self.moves.topRow['l'] == self.moves.topRow['m'] and  self.moves.topRow['l'] == self.moves.topRow['r']:
+            return self.moves.topRow['l'] 
+        if self.moves.midRow['l'] == self.moves.midRow['m'] and  self.moves.midRow['l'] == self.moves.midRow['r']:
+            return self.moves.midRow['l'] 
+        if self.moves.botRow['l'] == self.moves.botRow['m'] and  self.moves.botRow['l'] == self.moves.botRow['r']:
+            return self.moves.botRow['l'] 
+        # check across column
+        if self.moves.topRow['l'] == self.moves.botRow['l'] and  self.moves.midRow['l'] == self.moves.botRow['l']:
+            return self.moves.botRow['l'] 
+        if self.moves.topRow['m'] == self.moves.botRow['m'] and  self.moves.midRow['m'] == self.moves.botRow['m']:
+            return self.moves.botRow['m'] 
+        if self.moves.topRow['r'] == self.moves.botRow['r'] and  self.moves.midRow['r'] == self.moves.botRow['r']:
+            return self.moves.botRow['r'] 
+        # then 2 diagonals 
+        if self.moves.topRow['l'] == self.moves.botRow['r'] and  self.moves.midRow['m'] == self.moves.botRow['r']:
+            return self.moves.botRow['r'] 
+        if self.moves.topRow['r'] == self.moves.botRow['l'] and  self.moves.midRow['m'] == self.moves.botRow['l']:
+            return self.moves.botRow['l'] 
 
-        
+
+
