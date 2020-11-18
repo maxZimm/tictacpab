@@ -38,7 +38,18 @@ class TestGameLogicMethods(unittest.TestCase):
         game.moves.state['bot']['l'] = 1
         self.assertEqual(game.check_winner(), 1)
         sys.stdout = sys.__stdout__
-         
+
+    @patch('builtins.input', side_effect=['ScaryTerry','Holt', 'mid', 'm', 'mid','l'])
+    def test_playerturn(self, mock_input):
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        game = GameLogic()
+        game.player_turn()
+        self.assertEqual(game.moves.state['mid'],{'l':0,'m':1, 'r':0}) 
+        game.player_turn()
+        self.assertEqual(game.moves.state['mid'],{'l':2,'m':1, 'r':0}) 
+        sys.stdout = sys.__stdout__
+        
 
 if __name__ == '__main__':
     unittest.main()
